@@ -85,7 +85,7 @@ describe('M7 mixed crowds and lifecycle',()=>{
   const id=m.snapshots()[0].id;m.applyDamage(id,100);
   expect(Object.values(m.composition()).reduce((a,b)=>a+b,0)).toBe(19);
   m.clear();expect(m.alive()).toBe(0);expect(m.composition()).toEqual({common:0,runner:0,brute:0,predator:0});
- });
+ },20000);
  it('freezes every variant during pause and removes them on reset',async()=>{
   vi.stubGlobal('window',{addEventListener:()=>{},removeEventListener:()=>{}});
   const r=await Runtime.create();

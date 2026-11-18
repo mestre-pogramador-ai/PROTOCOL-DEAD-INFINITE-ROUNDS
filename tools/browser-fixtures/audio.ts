@@ -2,6 +2,9 @@ import {Runtime} from '../../src/app/Runtime';
 import {AudioDirector,type AudioFrame} from '../../src/presentation/audio/AudioDirector';
 import {DEFAULT_SETTINGS,saveSettings,readSettings} from '../../src/infrastructure/persistence/Settings';
 const r=await Runtime.create(),d=new AudioDirector(r.bus,DEFAULT_SETTINGS);
+// This fixture seeds its own combat target and tests explicit music states.
+// Natural arcade waves would kill the stationary listener during mixing checks.
+r.rounds.tick=()=>({started:false,completedRound:null});
 let override:Partial<AudioFrame>|null=null,previous=performance.now();
 function frame(time:number){r.frame((time-previous)/1000);previous=time;requestAnimationFrame(frame);}requestAnimationFrame(frame);
 function mix(){const p=r.getSnapshot().current;d.update({position:[p.position[0],p.position[1]+p.eyeHeight,p.position[2]],yaw:r.getLook().yaw,health:r.getCombatState().health,phase:r.getRoundState().phase,enemies:r.enemies.snapshots(),weapon:r.getWeaponState(),...override});return d.snapshot();}

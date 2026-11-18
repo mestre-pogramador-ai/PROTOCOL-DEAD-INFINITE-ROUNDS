@@ -10,7 +10,7 @@ const {chromium}=require('playwright-core'),fs=require('node:fs');
  const assert=(ok,why)=>{if(!ok)throw new Error(why);};
  async function fire(){await page.mouse.down();await page.waitForTimeout(35);await page.mouse.up();await page.waitForTimeout(210);}
  try{
-  await page.goto('http://localhost:4186/tools/browser-fixtures/audio.html');await page.waitForFunction(()=>window.audioTest);
+  await page.goto(process.env.AUDIO_URL||'http://localhost:4186/tools/browser-fixtures/audio.html');await page.waitForFunction(()=>window.audioTest);
   await page.click('#unlock');await command('ready');await page.waitForTimeout(150);record.menu=await observe();assert(record.menu.audio.loaded===33,'Missing decoded audio');assert(record.menu.audio.music==='menu','Menu');
   await page.click('#start');await page.waitForTimeout(200);await command('spawn');for(let i=0;i<4;i++)await fire();await page.waitForTimeout(200);record.combat=await observe();assert(record.combat.combat.kills>=1,'Real hitscan kill');assert(record.combat.audio.played['m9-shot']>=2&&record.combat.audio.played.kill>=1,'Confirmed combat audio');
   await page.keyboard.press('KeyR');await page.waitForTimeout(1800);record.reload=await observe();assert(record.reload.weapon.ammo===15&&record.reload.audio.played.magazine>=2,'Reload');

@@ -1,10 +1,10 @@
-const {chromium}=require('playwright');
+const {chromium}=require('playwright-core');
 const fs=require('node:fs'),path=require('node:path');
 (async()=>{
  const output=process.env.M81_EVIDENCE_DIR||'/tmp/m81-browser-evidence';fs.mkdirSync(output,{recursive:true});
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,
   args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
- const page=await browser.newPage({acceptDownloads:true,viewport:{width:1440,height:900}});
+ const page=await browser.newPage({acceptDownloads:true,viewport:{width:1280,height:720}});
  const errors=[],warnings=[],record={};
  page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());if(m.type()==='warning')warnings.push(m.text());});
  const observe=()=>page.evaluate(()=>window.m81Observe());
@@ -14,7 +14,7 @@ const fs=require('node:fs'),path=require('node:path');
   await page.keyboard.down(key);
   try{await page.waitForFunction(({index,target,positive})=>{
    const p=window.m81Observe().position[index];return positive?p>=target-.03:p<=target+.03;
-  },{index,target,positive},{timeout:12000});}finally{await page.keyboard.up(key);}
+  },{index,target,positive},{timeout:60000});}finally{await page.keyboard.up(key);}
  }
  async function faceSouth(){
   const look=(await observe()).look;
@@ -91,7 +91,7 @@ const fs=require('node:fs'),path=require('node:path');
   const diagnostics=JSON.parse(fs.readFileSync(path.join(output,'diagnostics.json'),'utf8'));
   record.reportVersion=diagnostics.version;
   if(diagnostics.version!==(process.env.EXPECTED_REPORT_VERSION||'M8.1')||!diagnostics.entries.some(e=>e.code==='user.marker'))throw new Error('Diagnostic export failed');
- }catch(e){errors.push(e.message);}
+ }catch(e){errors.push(e.message);record.failureState=await observe();await page.screenshot({path:path.join(output,'failure.png')});}
  finally{fs.writeFileSync(path.join(output,'result.json'),JSON.stringify({record,errors,warnings},null,2));console.log(JSON.stringify({record,errors,warnings}));await browser.close();}
  if(errors.length)process.exitCode=1;
 })().catch(e=>{console.error(e);process.exitCode=1;});

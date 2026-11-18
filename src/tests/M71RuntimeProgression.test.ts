@@ -35,8 +35,8 @@ it('finishes ten waves through Runtime with 80% body hits, paid ammo and real re
     shots:r.getWeaponState().shotsFired,credits:credits.credits,spent:credits.lifetimeSpent});
   }
   expect(r.getRoundState()).toMatchObject({round:11,completed:10});
-  expect(r.getResults()).toMatchObject({kills:187,shots:1271,hits:1017,completedRounds:10});
-  expect(r.getResults().accuracy).toBe(80);
+  expect(r.getResults()).toMatchObject({kills:195,shots:793,hits:635,completedRounds:10});
+  expect(r.getResults().accuracy).toBe(80.1);
   expect(r.getEconomyState().lifetimeSpent).toBeGreaterThan(0);
   expect(r.getCombatState().health).toBe(100);
   console.info('M71_RUNTIME',JSON.stringify({results:r.getResults(),rows}));

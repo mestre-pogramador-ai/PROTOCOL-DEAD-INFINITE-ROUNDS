@@ -66,3 +66,35 @@ describe('INFINITE ROUNDS — regras independentes', () => {
     } finally {runtime.dispose();vi.unstubAllGlobals();}
   });
 });
+
+describe('INFINITE ROUNDS — progressão longa', () => {
+  it('executa 20 rodadas, respeita o teto real de vivos e introduz os quatro arquétipos', () => {
+    const director = new RoundDirector();
+    let alive = 0;
+    const kinds = new Set<string>();
+    const totals: number[] = [];
+    for (let round = 1; round <= 20; round++) {
+      const expectedTotal = Math.min(48, 6 + 3 * (round - 1));
+      expect(director.snapshot().prepRemaining).toBe(round === 1 ? 3 : 6);
+      expect(director.tick((round === 1 ? 3 : 6) - .01, () => alive, () => false).started).toBe(false);
+      expect(director.tick(.02, () => alive, () => false).started).toBe(true);
+      let spawned = 0;
+      const spawn = (_hp: number, kind: string) => { alive++; spawned++; kinds.add(kind); return true; };
+      const cap = round <= 3 ? 6 : round <= 9 ? 8 : 10;
+      for (let tick = 0; tick < cap + 5; tick++) director.tick(2, () => alive, spawn);
+      expect(alive).toBe(cap);
+      expect(spawned).toBe(cap);
+      // Clear each batch and allow the actual director to schedule the rest.
+      for (let tick = 0; tick < 200 && director.snapshot().completed < round; tick++) {
+        alive = 0;
+        director.tick(2, () => alive, spawn);
+        expect(alive).toBeLessThanOrEqual(cap);
+      }
+      expect(director.snapshot().completed).toBe(round);
+      expect(spawned).toBe(expectedTotal);
+      totals.push(spawned);
+    }
+    expect(totals.slice(14)).toEqual([48,48,48,48,48,48]);
+    expect([...kinds].sort()).toEqual(['brute','common','predator','runner']);
+  });
+});

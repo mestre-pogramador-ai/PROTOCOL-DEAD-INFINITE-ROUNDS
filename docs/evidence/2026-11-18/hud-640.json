@@ -1,0 +1,85 @@
+{
+  "method": "Layout probe with four injected perk labels; no purchase simulation",
+  "result": [
+    {
+      "selector": ".m6-wave",
+      "perkRect": {
+        "left": 210,
+        "right": 430,
+        "top": 10,
+        "bottom": 55
+      },
+      "hudRect": {
+        "left": 10,
+        "right": 200.75,
+        "top": 24,
+        "bottom": 165
+      },
+      "overlap": false
+    },
+    {
+      "selector": ".m6-credits",
+      "perkRect": {
+        "left": 210,
+        "right": 430,
+        "top": 10,
+        "bottom": 55
+      },
+      "hudRect": {
+        "left": 550.265625,
+        "right": 630,
+        "top": 40,
+        "bottom": 118
+      },
+      "overlap": false
+    },
+    {
+      "selector": ".m6-health",
+      "perkRect": {
+        "left": 210,
+        "right": 430,
+        "top": 10,
+        "bottom": 55
+      },
+      "hudRect": {
+        "left": 10,
+        "right": 208.90625,
+        "top": 245.5,
+        "bottom": 320
+      },
+      "overlap": false
+    },
+    {
+      "selector": ".m6-ammo",
+      "perkRect": {
+        "left": 210,
+        "right": 430,
+        "top": 10,
+        "bottom": 55
+      },
+      "hudRect": {
+        "left": 452.40625,
+        "right": 630,
+        "top": 234.65625,
+        "bottom": 320
+      },
+      "overlap": false
+    },
+    {
+      "selector": ".m6-errors",
+      "perkRect": {
+        "left": 210,
+        "right": 430,
+        "top": 10,
+        "bottom": 55
+      },
+      "hudRect": {
+        "left": 521.0625,
+        "right": 630,
+        "top": 149.625,
+        "bottom": 180
+      },
+      "overlap": false
+    }
+  ]
+}
