@@ -1,0 +1,13 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env.local
+.DS_Store
+coverage/
+
+# Generated offline movement test output
+.tmp/
+
+# Desktop packages and local smoke evidence
+release/
+desktop-evidence/
