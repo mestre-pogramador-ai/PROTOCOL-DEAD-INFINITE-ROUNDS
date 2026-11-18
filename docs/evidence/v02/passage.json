@@ -1,0 +1,235 @@
+{
+  "record": {
+    "initial": {
+      "position": [
+        -0.9999988079071045,
+        0.8748199343681335,
+        9.927516657626256e-7
+      ],
+      "look": {
+        "yaw": 0,
+        "pitch": 0
+      },
+      "combat": {
+        "health": 100,
+        "maxHealth": 100,
+        "kills": 0,
+        "alive": 0,
+        "hitRecently": false,
+        "damageAngle": 0,
+        "gameOver": false,
+        "lastHeadshot": false,
+        "hitMarker": false,
+        "damageEvents": 0,
+        "invulnerability": 0
+      },
+      "weapon": {
+        "ammo": 15,
+        "reserve": 90,
+        "reloading": false,
+        "reloadRemaining": 0,
+        "reloadDuration": 1.5,
+        "ads": false,
+        "adsBlend": 0,
+        "cooldownRemaining": 0,
+        "shotsFired": 0
+      },
+      "economy": {
+        "credits": 15750,
+        "lifetimeEarned": 15250,
+        "lifetimeSpent": 0,
+        "lastNotice": {
+          "delta": 550,
+          "reason": "round",
+          "serial": 50
+        },
+        "doorPurchased": false
+      },
+      "perks": [],
+      "effects": {
+        "maxHealth": 100,
+        "reloadMultiplier": 1,
+        "speedMultiplier": 1,
+        "damageMultiplier": 1
+      },
+      "interaction": {
+        "kind": "ammo",
+        "message": "RESERVA M9 CHEIA"
+      },
+      "lifecycle": "running",
+      "doorOpen": true
+    },
+    "ammo": {
+      "position": [
+        -0.9999925494194031,
+        0.8750938773155212,
+        -0.000008791536856733728
+      ],
+      "look": {
+        "yaw": 0,
+        "pitch": 0
+      },
+      "combat": {
+        "health": 100,
+        "maxHealth": 100,
+        "kills": 0,
+        "alive": 0,
+        "hitRecently": false,
+        "damageAngle": 0,
+        "gameOver": false,
+        "lastHeadshot": false,
+        "hitMarker": false,
+        "damageEvents": 0,
+        "invulnerability": 0
+      },
+      "weapon": {
+        "ammo": 15,
+        "reserve": 90,
+        "reloading": false,
+        "reloadRemaining": 0,
+        "reloadDuration": 1.5,
+        "ads": false,
+        "adsBlend": 0,
+        "cooldownRemaining": 0,
+        "shotsFired": 1
+      },
+      "economy": {
+        "credits": 15744,
+        "lifetimeEarned": 15250,
+        "lifetimeSpent": 6,
+        "lastNotice": {
+          "delta": -6,
+          "reason": "ammo",
+          "serial": 51
+        },
+        "doorPurchased": false
+      },
+      "perks": [],
+      "effects": {
+        "maxHealth": 100,
+        "reloadMultiplier": 1,
+        "speedMultiplier": 1,
+        "damageMultiplier": 1
+      },
+      "interaction": {
+        "kind": "ammo",
+        "message": "RESERVA M9 CHEIA"
+      },
+      "lifecycle": "running",
+      "doorOpen": true
+    },
+    "passage": {
+      "position": [
+        9.420049667358398,
+        0.8750818371772766,
+        0.0011357926996424794
+      ],
+      "look": {
+        "yaw": 0,
+        "pitch": 0
+      },
+      "combat": {
+        "health": 100,
+        "maxHealth": 100,
+        "kills": 0,
+        "alive": 1,
+        "hitRecently": false,
+        "damageAngle": 0,
+        "gameOver": false,
+        "lastHeadshot": false,
+        "hitMarker": false,
+        "damageEvents": 0,
+        "invulnerability": 0
+      },
+      "weapon": {
+        "ammo": 15,
+        "reserve": 90,
+        "reloading": false,
+        "reloadRemaining": 0,
+        "reloadDuration": 1.5,
+        "ads": false,
+        "adsBlend": 0,
+        "cooldownRemaining": 0,
+        "shotsFired": 1
+      },
+      "economy": {
+        "credits": 15744,
+        "lifetimeEarned": 15250,
+        "lifetimeSpent": 6,
+        "lastNotice": {
+          "delta": -6,
+          "reason": "ammo",
+          "serial": 51
+        },
+        "doorPurchased": false
+      },
+      "perks": [],
+      "effects": {
+        "maxHealth": 100,
+        "reloadMultiplier": 1,
+        "speedMultiplier": 1,
+        "damageMultiplier": 1
+      },
+      "interaction": null,
+      "lifecycle": "running",
+      "doorOpen": true
+    },
+    "reset": {
+      "position": [
+        -1,
+        1.0499999523162842,
+        0
+      ],
+      "look": {
+        "yaw": 0,
+        "pitch": 0
+      },
+      "combat": {
+        "health": 100,
+        "maxHealth": 100,
+        "kills": 0,
+        "alive": 0,
+        "hitRecently": false,
+        "damageAngle": 0,
+        "gameOver": false,
+        "lastHeadshot": false,
+        "hitMarker": false,
+        "damageEvents": 0,
+        "invulnerability": 0
+      },
+      "weapon": {
+        "ammo": 15,
+        "reserve": 90,
+        "reloading": false,
+        "reloadRemaining": 0,
+        "reloadDuration": 1.5,
+        "ads": false,
+        "adsBlend": 0,
+        "cooldownRemaining": 0,
+        "shotsFired": 0
+      },
+      "economy": {
+        "credits": 500,
+        "lifetimeEarned": 0,
+        "lifetimeSpent": 0,
+        "lastNotice": null,
+        "doorPurchased": false
+      },
+      "perks": [],
+      "effects": {
+        "maxHealth": 100,
+        "reloadMultiplier": 1,
+        "speedMultiplier": 1,
+        "damageMultiplier": 1
+      },
+      "interaction": {
+        "kind": "ammo",
+        "message": "RESERVA M9 CHEIA"
+      },
+      "lifecycle": "running",
+      "doorOpen": true
+    }
+  },
+  "errors": [],
+  "httpErrors": []
+}

@@ -1,10 +1,16 @@
 # PROTOCOL: DEAD — INFINITE ROUNDS
 
-**Base V0.1-fork (código-fonte)** — FPS de sobrevivência zumbi para navegador/desktop, independente de **PROTOCOL: DEAD ZONE**.
+**V0.2 · Estação Zero (código-fonte)** — FPS de sobrevivência zumbi para navegador/desktop, independente de **PROTOCOL: DEAD ZONE**.
 
 Este repositório foi derivado **diretamente do arquivo fornecido pelo usuário** `PROTOCOLDEADZONE-m8.1.4a-horror-audio.zip`. Não foi clonado do GitHub e **o projeto original não foi alterado**. O objetivo é reaproveitar o código e os assets disponíveis, reduzindo o tempo de desenvolvimento do modo arcade de rodadas infinitas.
 
-## Conteúdo que já existe no código
+## Estação Zero
+
+A estação subterrânea ocupa 40 × 40 m. Quatro entradas protegidas por anteparos alimentam a área de combate central e as rotas laterais. A estação de munição fica próxima ao início da partida. As quatro máquinas de perks ficam na fileira ao sul. Cada partida começa com o pórtico leste aberto.
+
+Resultados dos testes, medições em Chromium e capturas estão em [STATUS_WORK](docs/STATUS_WORK.md) e [evidências da V0.2](docs/evidence/v02/).
+
+## Sistemas de jogo
 
 - FPS em Three.js / React Three Fiber e controlador Rapier (correr, pular, agachar, mira, colisão).
 - Pistola **M9** funcional com modelo GLB, braços FPS, tiros hitscan, headshots, recarga e áudio próprio. **É a única arma implementada na origem**; novas armas não estão prontas.
@@ -12,13 +18,13 @@ Este repositório foi derivado **diretamente do arquivo fornecido pelo usuário*
 - Director de ondas, gerenciamento de inimigos, economia, créditos, máquina de perks, estação de munição, HUD, pausa, resultados, configurações e recorde local.
 - Ambiente modular, shaders, culling de personagens, áudio dinâmico e diagnóstico **BAIXAR ERROS**.
 
-## O que foi modificado para o modo INFINITE ROUNDS
+## Regras do modo INFINITE ROUNDS
 
 1. **Rodada inicial em 3 segundos**; demais rodadas com **6 segundos** de preparação. T ainda permite antecipar.
 2. **Balanceamento arcade**: rodada 1 = 6 infectados; +3 por rodada até o máximo de **48 infectados totais** por rodada; no máximo **6 / 8 / 10 vivos ao mesmo tempo** conforme a rodada.
 3. Vida base de infectados = **84 HP**, escalada a cada 3 rodadas e limitada a 1,6×; spawn reduz de 1,6 s até um piso de 0,65 s.
 4. **Recuperação de até 20 HP** ao concluir uma rodada (nunca acima da vida máxima e nunca revive o jogador).
-5. Porta/corredor do cenário original **permanentemente abertos** em jogo novo ou após reinício. O ambiente original é uma **arena provisória reaproveitada**, não a futura Estação Zero redesenhada de 40×40 m.
+5. Porta/corredor do cenário original **permanentemente abertos** em jogo novo ou após reinício. A V0.2 usa a Estação Zero.
 6. Identidade textual, HUD e título atualizados para INFINITE ROUNDS.
 7. Preferências e recordes em **chaves de armazenamento separadas**, sem sobrescrever dados do DEAD ZONE.
 
@@ -48,7 +54,7 @@ npm run test:motion
 npm run build
 ```
 
-Esses comandos estão preparados na base, mas **não são declarados aprovados nesta entrega**. A validação completa depende da instalação das dependências e de teste real em navegador desktop. **Nenhum executável/instalador foi gerado.**
+Consulte o relatório da versão em `docs/STATUS_WORK.md` para os resultados e o ambiente de execução.
 
 ## Controles
 

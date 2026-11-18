@@ -111,7 +111,7 @@ describe('M8.1 Rapier and placement',()=>{
     const before=w.snapshot().current.position;
     w.step(dt,{...idle,held:new Set(['sprint']),moveX:1,moveY:-1},0,1.12);
     const after=w.snapshot().current.position;
-    expect(after[2]).toBeGreaterThan(-7.6);expect(after[0]).toBeLessThan(7.6);
+    expect(after[2]).toBeGreaterThan(-19.55);expect(after[0]).toBeLessThan(19.55);
     expect(after[0]-before[0]-(after[2]-before[2])).toBeGreaterThan(-.005);
    }
   }finally{w.dispose();}

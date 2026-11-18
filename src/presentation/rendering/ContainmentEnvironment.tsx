@@ -7,12 +7,13 @@ import {createEnvironmentLayout,createDoorLayout} from './EnvironmentLayout';
 import {buildEnvironmentBatches,disposeEnvironmentBatches,type EnvironmentBatch} from './EnvironmentGeometry';
 import {useRoomSurfaces} from './RoomSurfaces';
 import {PerkMachines} from './PerkMachines';
+import {StationSign} from './StationSign';
 export function ContainmentEnvironment({runtime}:{runtime:Runtime}){
  const resources=useRoomSurfaces();
  const doorStatus=useMemo(()=>(resources.materials.red as MeshStandardMaterial).clone(),[resources]);
  const lastOpen=useRef<boolean|null>(null);
  useEffect(()=>()=>doorStatus.dispose(),[doorStatus]);
- const batches=useMemo(()=>buildEnvironmentBatches(createEnvironmentLayout(),p=>p.anchor.includes('corridor')?'corridor':'room'),[]);
+ const batches=useMemo(()=>buildEnvironmentBatches(createEnvironmentLayout()),[]);
  const door=useMemo(()=>buildEnvironmentBatches(createDoorLayout()),[]);
  useEffect(()=>()=>{disposeEnvironmentBatches(batches);disposeEnvironmentBatches(door);},[batches,door]);
  const doorRef=useRef<Group>(null);
@@ -21,6 +22,6 @@ export function ContainmentEnvironment({runtime}:{runtime:Runtime}){
  return <group name="containment-environment">
   <group name="environment-static">{batches.map(b=>draw(b))}</group>
   <group name="environment-door" ref={doorRef} position={[...DOOR.position]}>{door.map(b=>draw(b,true))}</group>
-  <PerkMachines/>
+  <StationSign/><PerkMachines/>
  </group>;
 }

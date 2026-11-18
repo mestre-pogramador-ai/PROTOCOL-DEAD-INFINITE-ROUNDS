@@ -157,7 +157,7 @@ export function App({createRuntime=createDefaultRuntime}:{createRuntime?:()=>Pro
    {runtime&&<Canvas camera={{position:[-1,2,0],fov:settings.fov,near:.05,far:100}} shadows dpr={[1,1.75]}><Scene runtime={runtime}/></Canvas>}
    {!runtime&&<div className="boot-screen" role="status"><HeaderTitle/><p>{message||'Preparando módulos...'}</p></div>}
    {runtime&&<>
-    <div className="world-label" aria-hidden="true">OMEGA SYSTEMS <span>INFINITE ROUNDS / ARENA ÚNICA</span></div>
+    <div className="world-label" aria-hidden="true">OMEGA SYSTEMS <span>INFINITE ROUNDS / ESTAÇÃO ZERO</span></div>
     {showHUD&&<>
      <div className="m81-perks" aria-label="Perks adquiridos">{perks.map(perk=><span key={perk.id} title={perk.description} style={{borderColor:perk.color,color:perk.color}}><b>{perk.icon}</b> {perk.name}</span>)}</div>
      <div className="m6-wave"><div className="hud-label">INFINITE / SOBREVIVÊNCIA</div><div className="wave-big">{String(round?.round??1).padStart(2,'0')}<span>RODADA INFINITA</span></div>
@@ -184,7 +184,7 @@ export function App({createRuntime=createDefaultRuntime}:{createRuntime?:()=>Pro
     </>}
     {status==='ready'&&!settingsOpen&&<div className="menu-screen" role="dialog" aria-modal="true" aria-label="Menu principal"><div className="menu-card start-card"><div className="menu-eyebrow">CONEXÃO ESTABELECIDA // NÍVEL DE AMEAÇA: CRÍTICO</div><HeaderTitle/><h2>SOBREVIVA O MÁXIMO QUE PUDER.</h2><p>Você está isolado na Estação Zero. Sobreviva ao maior número de rodadas possível. A arena está aberta: compre munição e perks para continuar vivo.</p>
       <div className="menu-buttons"><button className="menu-primary" onClick={enter}>INICIAR OPERAÇÃO</button><button className="menu-secondary" onClick={openSettings}>CONFIGURAÇÕES</button><button className="menu-secondary" onClick={toggleFullscreen}>TELA CHEIA</button></div>
-      <div className="menu-foot">V0.1 / INFINITE ROUNDS · M9 · QUATRO INFECTADOS · ARENA ÚNICA · OFFLINE</div>
+      <div className="menu-foot">V0.2 / ESTAÇÃO ZERO · M9 · QUATRO INFECTADOS · ARENA ÚNICA · OFFLINE</div>
       {best&&<div className="best-run">SEU RECORDE LOCAL · {best.completedRounds} rodadas · {best.kills} eliminações</div>}
      </div></div>}
     {status==='paused'&&!settingsOpen&&<div className="menu-screen" role="dialog" aria-modal="true" aria-label="Menu de pausa"><div className="menu-card pause-card"><div className="menu-eyebrow">SIMULAÇÃO SUSPENSA</div><h2>OPERAÇÃO PAUSADA</h2><p>Rodada {round?.round??1} · {combat?.kills??0} eliminações · {formatDuration(liveMetrics?.elapsedSeconds??0)} de sobrevivência</p><div className="menu-buttons"><button className="menu-primary" onClick={enter}>RETOMAR OPERAÇÃO</button><button className="menu-secondary" onClick={openSettings}>CONFIGURAÇÕES</button><button className="menu-secondary" onClick={toggleFullscreen}>TELA CHEIA</button><button className="menu-danger" onClick={reset}>REINICIAR PARTIDA</button></div><div className="menu-foot">O tempo, inimigos e recargas permanecem congelados durante a pausa.</div></div></div>}

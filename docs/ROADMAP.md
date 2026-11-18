@@ -1,6 +1,6 @@
 # Roadmap incremental
 
-## V0.1-fork — base de reaproveitamento (entrega atual)
+## V0.1-fork — base de reaproveitamento
 
 **Objetivo:** projetar e disponibilizar o núcleo do INFINITE ROUNDS como ramificação real da M8.1.4a.
 
@@ -16,13 +16,15 @@ Tarefas: validar testes históricos remanescentes; jogar 20 rodadas; medir FPS c
 
 **Critérios:** testes automáticos passando, gameplay de ponta a ponta sem travamento, ausência de erros graves no console, registros das medições.
 
-## V0.2 — Estação Zero definitiva
+## V0.2 — Estação Zero implementada
 
 **Objetivo:** substituir a sala/corredor provisórios pela arena única desenhada, sem áreas bloqueadas.
 
 Tarefas: planta final, geometria modular e arte, pontos de spawn ocultos, colisões, paths e linhas de visão compatíveis, testes de navegação e de arma. A arena 40×40 m é proposta inicial, não dimensão congelada.
 
 **Critérios:** nenhuma entrada de spawn visível injusta, rotas fechadas, paredes atravessáveis ou quedas de desempenho críticas.
+
+A implementação, os testes executados e as medições disponíveis estão em [STATUS_WORK.md](STATUS_WORK.md).
 
 ## V0.3 — variedade de armas
 

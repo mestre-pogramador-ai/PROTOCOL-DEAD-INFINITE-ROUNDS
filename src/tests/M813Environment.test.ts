@@ -1,8 +1,7 @@
 import {beforeAll,describe,expect,it,vi} from 'vitest';
 import RAPIER from '@dimforge/rapier3d-compat';
-import {Box3,Vector3,Ray,Mesh,MeshBasicMaterial,DoubleSide,Raycaster} from 'three';
-import originalSolids from './fixtures/m812-map-solids.json';
-import {CONTAINMENT_MODULES,DOOR,PERK_MACHINES} from '../world/maps/containment';
+import {Box3,Vector3,Ray,Mesh,MeshBasicMaterial,Raycaster} from 'three';
+import {CONTAINMENT_MODULES,PERK_MACHINES} from '../world/maps/containment';
 import {ATLAS_TILES,createEnvironmentLayout,createDoorLayout} from '../presentation/rendering/EnvironmentLayout';
 import {buildEnvironmentBatches,createPartGeometry,disposeEnvironmentBatches} from '../presentation/rendering/EnvironmentGeometry';
 import {PhysicsWorld} from '../physics/PhysicsWorld';
@@ -16,10 +15,10 @@ function tick(w:PhysicsWorld,n:number,input=idle){for(let i=0;i<n;i++)w.step(dt,
 function teleport(w:PhysicsWorld,x:number,y:number,z:number){w.world.forEachRigidBody(b=>{if(b.isKinematic()){b.setTranslation({x,y,z},true);b.setNextKinematicTranslation({x,y,z});}});w.syncInterpolation();}
 const layout=createEnvironmentLayout();
 describe('M8.1.3 environment safety and cost',()=>{
- it('preserves all M8.1.2 solids and adds only the existing room roof',()=>{
-  expect(originalSolids.length).toBe(25);
-  for(const original of originalSolids){const current=CONTAINMENT_MODULES.find(m=>m.id===original.id)!;expect(current.position).toEqual(original.position);expect(current.size).toEqual(original.size);expect(current.collision).toBe(true);}
-  expect(CONTAINMENT_MODULES.filter(m=>!originalSolids.some(o=>o.id===m.id))).toEqual([{id:'ceiling-main',kind:'ceiling',position:[0,3.6,0],size:[16,.2,16],material:'wall',collision:true}]);
+ it('uses one 40 m floor with a continuous perimeter and roof',()=>{
+  expect(CONTAINMENT_MODULES.filter(m=>m.kind==='floor').map(m=>m.size)).toEqual([[40,.5,40]]);
+  expect(CONTAINMENT_MODULES.find(m=>m.kind==='ceiling')?.size).toEqual([40,.2,40]);
+  for(const [x,z] of [[-20,0],[20,0],[0,20],[0,-20]])expect(enemyCanOccupy(x,z,true)).toBe(false);
  });
  it('keeps decorative assemblies inside their existing solid envelopes',()=>{
   for(const p of layout){
@@ -28,7 +27,7 @@ describe('M8.1.3 environment safety and cost',()=>{
    // Flush lining/signs <= 3.5 cm; roof coffers hang <= 15 cm; floor markings <= 1 cm.
    const min=centre.clone().sub(half),max=centre.clone().add(half);
    const allowance=anchor.kind==='wall'?.036:anchor.kind==='floor'?.01:.006;
-   min.addScalar(-allowance);max.addScalar(allowance);if(anchor.kind==='ceiling')min.y=3.34;
+   min.addScalar(-allowance);max.addScalar(allowance);if(anchor.kind==='ceiling')min.y-=.16;
    const g=createPartGeometry(p);g.computeBoundingBox();const b=g.boundingBox!;
    expect(b.min.x,p.id).toBeGreaterThanOrEqual(min.x-.00001);expect(b.max.x,p.id).toBeLessThanOrEqual(max.x+.00001);
    expect(b.min.y,p.id).toBeGreaterThanOrEqual(min.y-.00001);expect(b.max.y,p.id).toBeLessThanOrEqual(max.y+.00001);
@@ -54,21 +53,14 @@ describe('M8.1.3 environment safety and cost',()=>{
    finally{meshes.forEach(m=>m.geometry.dispose());}
   }}finally{material.dispose();}
  });
- it('retains clear head-height fire lanes to every originally visible spawn',()=>{
-  const material=new MeshBasicMaterial({side:DoubleSide}),batches=buildEnvironmentBatches(layout);
-  try{
-   const meshes=batches.map(b=>new Mesh(b.geometry,material));meshes.forEach(m=>m.updateMatrixWorld());
-   let checked=0;
-   for(const [x,z]of WAVE_SPAWNS){
-    const from=new Vector3(-1,1.78,0),to=new Vector3(x,1.78,z),dir=to.clone().sub(from),distance=dir.length();dir.normalize();
-    const ray=new Ray(from,dir);const originalBlocked=[...originalSolids,DOOR].some(m=>{
-     const box=new Box3().setFromCenterAndSize(new Vector3(...m.position),new Vector3(...m.size));const hit=ray.intersectBox(box,new Vector3());return hit&&hit.distanceTo(from)<distance;
-    });
-    if(originalBlocked)continue;
-    checked++;expect(new Raycaster(from,dir,0,distance-.1).intersectObjects(meshes).length,`spawn ${x},${z}`).toBe(0);
-   }
-   expect(checked).toBeGreaterThan(5);
-  }finally{disposeEnvironmentBatches(batches);material.dispose();}
+ it('shields every intake from head-height fire at the centre',()=>{
+  for(const [x,z] of WAVE_SPAWNS){
+   const ray=new Ray(new Vector3(0,1.78,0),new Vector3(x,0,z).normalize());
+   expect(CONTAINMENT_MODULES.filter(m=>m.id.startsWith('intake-')).some(m=>{
+    const hit=ray.intersectBox(new Box3().setFromCenterAndSize(new Vector3(...m.position),new Vector3(...m.size)),new Vector3());
+    return hit && hit.distanceTo(ray.origin)<Math.hypot(x,z);
+   })).toBe(true);
+  }
  });
  it('batches static art into at most thirteen shared batches with bounded geometry and cleanup',()=>{
   const batches=buildEnvironmentBatches(layout),door=buildEnvironmentBatches(createDoorLayout());
@@ -100,12 +92,12 @@ describe('M8.1.3 actual physics and gameplay regression',()=>{
    expect(peak).toBeGreaterThan(3);expect(peak).toBeLessThan(3.3);expect(w.snapshot().current.grounded).toBe(true);expect(w.snapshot().current.position[1]).toBeCloseTo(baseline,3);
   }finally{w.dispose();}
  });
- it('jump from a pod collides with the new ceiling instead of crossing visible art',()=>{
+ it('jump from a pod stays below the station roof',()=>{
   const w=new PhysicsWorld();try{
    teleport(w,-4,2.28,-4);tick(w,90);expect(w.snapshot().current.grounded).toBe(true);
    const base=w.snapshot().current.position[1];w.step(dt,{...idle,pressed:new Set(['jump'])},0);
    let peak=base;for(let i=0;i<150;i++){tick(w,1);peak=Math.max(peak,w.snapshot().current.position[1]);}
-   expect(peak).toBeGreaterThan(base+.1);expect(peak+PLAYER.radius+PLAYER.halfHeight).toBeLessThanOrEqual(3.501);expect(w.snapshot().current.grounded).toBe(true);
+   expect(peak).toBeGreaterThan(base+.1);expect(peak+PLAYER.radius+PLAYER.halfHeight).toBeLessThanOrEqual(5.501);expect(w.snapshot().current.grounded).toBe(true);
   }finally{w.dispose();}
  });
  it('all decorated purchase approaches still invoke real transactions without duplicate charges',async()=>{

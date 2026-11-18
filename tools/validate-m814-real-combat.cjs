@@ -1,7 +1,7 @@
 /* Real AI, movement, damage, hitscan and finite ammo. The fixture seeds stationary
  * initial groups and disables wave scheduling; aiming is automated. No god mode,
  * direct elimination, damage setter, free reload or synthetic credit payout. */
-const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path');
+const {chromium}=require('playwright-core'),fs=require('node:fs'),path=require('node:path');
 (async()=>{
  const out='/tmp/m814-real-combat';fs.mkdirSync(out,{recursive:true});
  const browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']});

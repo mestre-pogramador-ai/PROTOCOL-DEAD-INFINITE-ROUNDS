@@ -88,7 +88,7 @@ describe('M6.2 weapon and lifecycle',()=>{
   const near=new Infected(1,0,-2).snapshot(),far=new Infected(2,0,-4).snapshot();
   const q={origin:[0,1.78,0] as const,yaw:0,pitch:0,maxDistance:80,doorOpen:false,id:1,damage:32};
   expect(traceCombatShot(q,[far,near])).toMatchObject({enemyId:1,headshot:true});
-  expect(traceCombatShot(q,[{...near,z:-10}]).enemyId).toBeNull();
+  expect(traceCombatShot(q,[{...near,z:-18}]).enemyId).toBeNull();
   expect(traceCombatShot(q,[{...near,state:'dead'},far]).enemyId).toBe(2);
  });
  it('pause freezes physics, reload and waves; reset restores session',async()=>{

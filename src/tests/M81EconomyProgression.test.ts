@@ -20,12 +20,11 @@ describe('M8.1 finite-resource perk economy',()=>{
    const perks:PerkManager=new PerkManager(economy,undefined,()=>w.configureReloadMultiplier(perks.effects().reloadMultiplier));
    const acquired:object[]=[];
    const enemies=new EnemyManager(),rounds=new RoundDirector(),metrics=new SessionMetrics();enemies.clear();
-   let request=0,purchases=0,delivered=0,kills=0,misses=0,reloads=0,door=false;
+   let request=0,purchases=0,delivered=0,kills=0,misses=0,reloads=0;
    const evidence:object[]=[];
    for(let tick=0;tick<180000&&rounds.snapshot().completed<15;tick++){
     metrics.tick(dt);supply.tick(dt);
     if(rounds.snapshot().phase==='preparation')rounds.beginNow();
-    if(!door&&economy.balance>=1000){expect(economy.buy('door-containment-security',750)).toBe(true);door=true;}
     for(const perk of PERK_DEFINITIONS)if(!perks.has(perk.id)&&economy.balance>=perk.price+360){
      expect(perks.buy(perk.id)).toBe('acquired');acquired.push({id:perk.id,round:rounds.snapshot().round,balance:economy.balance});
     }
@@ -46,7 +45,7 @@ describe('M8.1 finite-resource perk economy',()=>{
      if(miss)misses++;
      const {trace,hit,killed}=resolveShot({origin:[-1,1.525,0],
       yaw:miss?Math.PI/2:0,pitch:Math.atan2((profile.head?1.78:1.08)-1.525,4),
-      maxDistance:shot.range,doorOpen:door,id:shot.id,damage:shot.damage},
+      maxDistance:shot.range,doorOpen:true,id:shot.id,damage:shot.damage},
       shot.headshotMultiplier,enemies,economy);
      expect(hit).toBe(!miss);
      metrics.recordShot(hit,trace.headshot);
@@ -68,11 +67,11 @@ describe('M8.1 finite-resource perk economy',()=>{
 
    }
    expect(rounds.snapshot()).toMatchObject({completed:15,round:16});
-   expect(kills).toBeGreaterThan(187);expect(evidence).toHaveLength(15);expect(perks.snapshot()).toHaveLength(4);expect(purchases).toBeGreaterThan(0);
-   expect(door).toBe(true);expect(reloads).toBeGreaterThan(0);
+   expect(kills).toBe(405);expect(evidence).toHaveLength(15);expect(perks.snapshot()).toHaveLength(4);expect(purchases).toBeGreaterThan(0);
+   expect(economy.snapshot().doorPurchased).toBe(false);expect(reloads).toBeGreaterThan(0);
    const state=w.snapshot(),credits=economy.snapshot();
    expect(state.shotsFired+state.ammo+state.reserve).toBe(105+delivered);
-   expect(credits.lifetimeSpent).toBe(750+10000+delivered*AMMO_SUPPLY.unitPrice);
+   expect(credits.lifetimeSpent).toBe(10000+delivered*AMMO_SUPPLY.unitPrice);
    console.info('M81_PROGRESSION',JSON.stringify({profile:profile.name,kills,misses,shots:state.shotsFired,purchases,delivered,reloads,credits,acquired,evidence}));
   },20000);
  }

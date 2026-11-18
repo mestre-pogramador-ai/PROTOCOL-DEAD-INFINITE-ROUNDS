@@ -1,5 +1,50 @@
 # STATUS_WORK — PROTOCOL: DEAD INFINITE ROUNDS
 
+## V0.2 · Estação Zero · 18/11/2026
+
+A arena jogável ocupa um piso de 40 × 40 m com teto a 5,5 m. As quatro entradas ficam atrás dos anteparos norte, sul, leste e oeste. Cada anteparo tem duas saídas para a pista lateral. As faixas no piso delimitam a volta pela estação. O centro tem linhas de tiro abertas, acesso à máquina de munição e ao pórtico leste. As quatro máquinas de perks continuam acessíveis ao sul. A cobertura, os pilares e as paredes usam as mesmas dimensões no render, no Rapier e no cálculo de obstrução de tiros.
+
+O alcance de perseguição cobre a diagonal da estação. A busca em grade leva em conta a largura de cada infectado e verifica o caminho até o alvo quando o centro da célula mais próxima cai dentro de um obstáculo. O mapa fixo permite reaproveitar as verificações de passagem entre células. A seleção de spawn usa as quatro entradas, distância, ocupação, orientação do jogador e cobertura. Os limites do diretor continuam em 6, 8 e 10 vivos conforme a rodada.
+
+### Validação
+
+| Execução | Resultado |
+|---|---|
+| Referência V0.1, commit `f096b21` | 198 testes e 13 verificações de movimento aprovados; a suíte inclui travessia do pórtico aberto, compras e progressão por rodadas. |
+| `npm test` | 204 testes aprovados em 32 arquivos. Inclui ataques após contornar cobertura nas 16 combinações de entrada e arquétipo, passagem das quatro entradas aos cantos e serviços, limites de spawn, cura e progressão. |
+| `npm run test:motion` | 13 verificações aprovadas. |
+| `npm run build` | TypeScript e Vite concluídos. Vite sinaliza o tamanho do bundle principal. |
+| Chromium, interface do jogo | M9, recarga, compra de uma bala por 6 CR, início antecipado da rodada, pausa e reinício com 500 CR, 100 HP e 15/90. |
+| Chromium, Runtime acelerado | Derrota por seis ataques registrados, limpeza dos inimigos no reinício, pórtico aberto e recorde persistido em chave própria. |
+| Chromium, fixture de compras com créditos iniciais de teste | Quatro perks, efeitos, proteção contra compra duplicada, crédito insuficiente e travessia física do pórtico por teclado sem débito. |
+| Runtime com mira e controles automatizados | Três rodadas consecutivas na Estação Zero com spawns naturais e IA ativa. 27 eliminações, 54 disparos da M9 e 270 CR gastos em munição. |
+| Chromium, fixture de combate | Com grupos semeados de 6, 12 e 20 infectados, nove disparos e quatro eliminações por grupo. Os grupos de 12 e 20 são testes de estresse fora do director. Nenhum erro JavaScript ou HTTP registrado pelo runner. |
+| Chromium, Web Audio | 33 arquivos carregados. O teste exerceu o mixer, os efeitos de combate, pausa e descarte do contexto. |
+
+Os casos históricos de colisão e tiro agora usam paredes e anteparos da Estação Zero. O teste de progressão com quatro perks descarta o custo antigo de destravar a porta. Durante uma execução paralela com o render por software, o teste de estresse com 20 infectados excedeu o prazo de 5 s. A execução final completa passou com o prazo original.
+
+### Medição no Chromium
+
+Chromium headless, WebGL2 sobre SwiftShader, viewport de 640 × 360, densidade de pixels 1. O cenário de medição pausa a IA, posiciona grupos mistos diante da mesma câmera e contabiliza chamadas WebGL da cena, sombras e arma. Para cada grupo, o script aguarda cinco quadros de aquecimento e mede os 15 seguintes. As quantidades representam carga de render controlada. O FPS inclui a variação do executor em nuvem.
+
+A primeira referência foi capturada antes da alteração da geometria (`before.json`). A comparação abaixo usa uma segunda execução isolada do código V0.1 do Git (`baseline-replay.json`) seguida da versão final (`after.json`). O heap é a memória JavaScript informada pelo Chromium, em MiB. Geometrias e texturas são contagens de recursos do Three.js.
+
+| Carga | FPS V0.1 → V0.2 | Draw calls por quadro | Heap JS (MiB) | Geometrias | Texturas |
+|---|---:|---:|---:|---:|---:|
+| 6 infectados | 3.51 → 3.18 | 40 → 41 | 26.7 → 27.9 | 28 → 33 | 26 → 27 |
+| 8 infectados | 2.08 → 4.05 | 48 → 49 | 29.2 → 30.4 | 28 → 33 | 28 → 29 |
+| 10 infectados | 3.66 → 4.47 | 52 → 53 | 31.6 → 26.7 | 28 → 33 | 30 → 31 |
+| Reinício 1 (10) | 4.40 → 4.26 | 52 → 53 | 26.7 → 26.5 | 28 → 33 | 30 → 31 |
+| Reinício 2 (10) | 2.98 → 4.62 | 52 → 53 | 26.2 → 26.4 | 28 → 33 | 30 → 31 |
+| Reinício 3 (10) | 4.43 → 4.86 | 52 → 53 | 26.4 → 26.6 | 28 → 33 | 30 → 31 |
+
+As contagens da V0.2 ficaram estáveis nos três reinícios com dez infectados. A faixa curta de amostragem e a coleta de lixo limitam a interpretação do heap. Pendentes uma sessão longa, medições em GPU física e uma partida manual completa. A simulação do director cobre vinte rodadas; os testes de combate e economia usam condições controladas.
+
+A [vista geral da estação](evidence/v02/station.png), a [captura em primeira pessoa](evidence/v02/active.png), os logs e os JSONs estão em [evidence/v02](evidence/v02/). Para repetir a medição, execute `node tools/build-visual-fixture.mjs`, sirva `/tmp/m811-visual-build` na porta 4175 e rode `node tools/measure-station.cjs /tmp/station.json`. O parâmetro `STATION_PROFILE_URL` seleciona outra instância da fixture.
+
+## Histórico da V0.1
+
+
 ## Concluído neste fork
 
 - [x] Inspecionado ZIP de origem M8.1.4a.

@@ -68,7 +68,7 @@ describe.each(ENEMY_KINDS)('M7 %s combat',kind=>{
   const e=new Infected(1,0,-2,100,kind).snapshot();
   const q={origin:[0,1.78,0] as const,yaw:0,pitch:0,maxDistance:80,doorOpen:false,id:1,damage:32};
   expect(traceCombatShot(q,[e])).toMatchObject({enemyId:1,headshot:true});
-  expect(traceCombatShot(q,[{...e,z:-10}]).enemyId).toBeNull();
+  expect(traceCombatShot(q,[{...e,z:-18}]).enemyId).toBeNull();
  });
 });
 describe('M7 mixed crowds and lifecycle',()=>{

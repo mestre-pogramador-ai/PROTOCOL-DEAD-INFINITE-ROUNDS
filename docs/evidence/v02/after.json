@@ -1,0 +1,56 @@
+[
+  {
+    "count": 6,
+    "fps": 3.178976369608986,
+    "drawCalls": 41,
+    "heapBytes": 29213284,
+    "geometries": 33,
+    "textures": 27,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+  },
+  {
+    "count": 8,
+    "fps": 4.049676025917926,
+    "drawCalls": 49,
+    "heapBytes": 31857920,
+    "geometries": 33,
+    "textures": 29,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+  },
+  {
+    "count": 10,
+    "fps": 4.468940861015939,
+    "drawCalls": 53,
+    "heapBytes": 27998992,
+    "geometries": 33,
+    "textures": 31,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+  },
+  {
+    "count": 10,
+    "fps": 4.257372349785937,
+    "drawCalls": 53,
+    "heapBytes": 27792900,
+    "geometries": 33,
+    "textures": 31,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+  },
+  {
+    "count": 10,
+    "fps": 4.62206883801216,
+    "drawCalls": 53,
+    "heapBytes": 27678576,
+    "geometries": 33,
+    "textures": 31,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+  },
+  {
+    "count": 10,
+    "fps": 4.86034605663894,
+    "drawCalls": 53,
+    "heapBytes": 27890840,
+    "geometries": 33,
+    "textures": 31,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+  }
+]

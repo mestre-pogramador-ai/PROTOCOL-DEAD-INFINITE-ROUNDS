@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## V0.2 · Estação Zero
+
+- Arena industrial subterrânea de 40 × 40 m, quatro entradas abrigadas, centro de combate e rotas laterais abertas. Pilares, venezianas, anteparos e sinalização usam o kit industrial e materiais compartilhados.
+- Grade de navegação ampliada, alcance de perseguição estendido e detecção de obstáculos ao longo do segmento de movimento. As verificações entre células ficam em cache.
+- Estação de munição, quatro perks e pórtico aberto acessíveis na nova planta. Cobertura e colisões participam dos testes de tiro, movimento e alcance das máquinas.
+- A validação inclui comparação de render da V0.1 com a V0.2 em SwiftShader, três reinícios consecutivos e capturas reais. Consulte [o relatório](docs/STATUS_WORK.md) e [as evidências](docs/evidence/v02/).
+
+
+
 ## V0.1.0-fork — estabilização (18/11/2026)
 
 - Importação integral do ZIP no repositório independente, preservando atribuições.

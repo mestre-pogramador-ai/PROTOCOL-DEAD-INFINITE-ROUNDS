@@ -1,4 +1,4 @@
-/** M1: mapa fixo autoral; medidas em metros, Y para cima. */
+/** Estação Zero. Medidas em metros, eixo Y vertical. */
 export type Vec3 = readonly [number, number, number];
 export interface SolidModule { id: string; kind: 'floor' | 'wall' | 'ceiling' | 'prop' | 'doorFrame'; position: Vec3; size: Vec3; material: 'floor' | 'wall' | 'trim' | 'hazard' | 'glass'; collision: boolean }
 export const PERK_MACHINES=[
@@ -7,21 +7,27 @@ export const PERK_MACHINES=[
  {id:'perk-impulse',perk:'impulse',position:[3.5,.9,7.1] as Vec3},
  {id:'perk-armor',perk:'reactiveArmor',position:[6,.9,7.1] as Vec3},
 ] as const;
+// Cada anteparo esconde uma entrada e permite sair pelos dois lados.
+export const STATION_ENTRIES = [
+  {id:'north', x:0, z:-18}, {id:'south', x:0, z:18},
+  {id:'west', x:-18, z:0}, {id:'east', x:18, z:0},
+] as const;
+const wall = (id:string, position:Vec3, size:Vec3):SolidModule => ({
+  id, kind:'wall', position, size, material:'wall', collision:true,
+});
 export const CONTAINMENT_MODULES: readonly SolidModule[] = [
   ...PERK_MACHINES.map(m=>({id:m.id,kind:'prop' as const,position:m.position,size:[.6,1.8,.45] as Vec3,material:'trim' as const,collision:true})),
   {id:'ammo-station',kind:'prop',position:[-2.5,.6,-1.5],size:[.8,1.2,.5],material:'trim',collision:true},
-  // M8.1.3: physical closure matches wall height; elevated collider is ignored by 2D navigation.
-  {id:'ceiling-main',kind:'ceiling',position:[0,3.6,0],size:[16,.2,16],material:'wall',collision:true},
-  {id:'floor-main',kind:'floor',position:[0,-0.25,0],size:[16,.5,16],material:'floor',collision:true},
-  {id:'floor-corridor',kind:'floor',position:[14,-.25,0],size:[12,.5,4],material:'floor',collision:true},
-  {id:'north-wall',kind:'wall',position:[0,1.75,-8],size:[16,3.5,.35],material:'wall',collision:true},
-  {id:'south-wall',kind:'wall',position:[0,1.75,8],size:[16,3.5,.35],material:'wall',collision:true},
-  {id:'west-wall',kind:'wall',position:[-8,1.75,0],size:[.35,3.5,16],material:'wall',collision:true},
-  {id:'east-north',kind:'wall',position:[8,1.75,-5],size:[.35,3.5,6],material:'wall',collision:true},
-  {id:'east-south',kind:'wall',position:[8,1.75,5],size:[.35,3.5,6],material:'wall',collision:true},
-  {id:'corridor-north',kind:'wall',position:[14,1.75,-2],size:[12,3.5,.35],material:'wall',collision:true},
-  {id:'corridor-south',kind:'wall',position:[14,1.75,2],size:[12,3.5,.35],material:'wall',collision:true},
-  {id:'corridor-end',kind:'wall',position:[20,1.75,0],size:[.35,3.5,4],material:'wall',collision:true},
+  {id:'ceiling-main',kind:'ceiling',position:[0,5.6,0],size:[40,.2,40],material:'wall',collision:true},
+  {id:'floor-main',kind:'floor',position:[0,-.25,0],size:[40,.5,40],material:'floor',collision:true},
+  wall('north-wall',[0,2.75,-20],[40,5.5,.35]),
+  wall('south-wall',[0,2.75,20],[40,5.5,.35]),
+  wall('west-wall',[-20,2.75,0],[.35,5.5,40]),
+  wall('east-wall',[20,2.75,0],[.35,5.5,40]),
+  ...STATION_ENTRIES.map(({id,x,z}) => wall('intake-'+id,
+    [x*0.8,1.5,z*0.8], x===0 ? [7,3,1] : [1,3,7])),
+  ...[-11,11].flatMap(x => [-11,11].map(z => wall(
+    'pier-'+x+'-'+z,[x,2.75,z],[1.5,5.5,1.5]))),
   {id:'door-frame-left',kind:'doorFrame',position:[8,1.75,-1.7],size:[.6,3.5,.35],material:'trim',collision:true},
   {id:'door-frame-right',kind:'doorFrame',position:[8,1.75,1.7],size:[.6,3.5,.35],material:'trim',collision:true},
   {id:'door-frame-top',kind:'doorFrame',position:[8,3.3,0],size:[.6,.4,3.4],material:'trim',collision:true},
@@ -35,11 +41,13 @@ export const CONTAINMENT_MODULES: readonly SolidModule[] = [
 ];
 export const AMMO_STATION={id:'ammo-station',position:[-2.5,1,-1.5] as Vec3,range:2.2};
 export const DOOR = { id:'door-containment-security', position:[8,1.5,0] as Vec3, size:[.28,3,2.9] as Vec3 };
+// Survey points describe the open ring. Pursuit uses the collision grid.
 export const NAV_NODES = [
-  {id:'containment-center',position:[0,0,0] as Vec3,links:['containment-door']},
-  {id:'containment-door',position:[6.5,0,0] as Vec3,links:['containment-center','security-corridor'],requiresOpenDoor:DOOR.id},
-  {id:'security-corridor',position:[12,0,0] as Vec3,links:['containment-door','corridor-end'],requiresOpenDoor:DOOR.id},
-  {id:'corridor-end',position:[18,0,0] as Vec3,links:['security-corridor']},
+  {id:'centre',position:[0,0,0] as Vec3,links:['nw','ne','sw','se']},
+  {id:'nw',position:[-9,0,-9] as Vec3,links:['centre','ne','sw']},
+  {id:'ne',position:[9,0,-9] as Vec3,links:['centre','nw','se']},
+  {id:'sw',position:[-9,0,9] as Vec3,links:['centre','nw','se']},
+  {id:'se',position:[9,0,9] as Vec3,links:['centre','ne','sw']},
 ] as const;
 export function validateContainmentMap(): string[] {
   const errors: string[]=[];const ids=new Set<string>();

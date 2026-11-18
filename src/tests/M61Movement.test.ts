@@ -57,7 +57,7 @@ describe('M6.1 — integração real com Rapier (requer npm install)', () => {
     try {
       advance(world, 100);
       advance(world, 220, input(['forward'], [], 0, -1));
-      expect(world.snapshot().current.position[2]).toBeGreaterThan(-7.6);
+      expect(world.snapshot().current.position[2]).toBeGreaterThan(-13.6);
       const before = world.snapshot().current.position;
       advance(world, 90, input(['forward'], [], 0, -1));
       const after = world.snapshot().current.position;
@@ -80,7 +80,7 @@ describe('M6.1 — integração real com Rapier (requer npm install)', () => {
       }
       const after = world.snapshot().current.position;
       expect(after[0]).toBeGreaterThan(before[0] + 2);
-      expect(after[2]).toBeGreaterThan(-7.6);
+      expect(after[2]).toBeGreaterThan(-13.6);
     } finally { world.dispose(); }
   });
 

@@ -1,5 +1,6 @@
 /** Repeatable photographic cameras; never teleport the gameplay character. */
 export const ENVIRONMENT_VIEWS={
+ station:{position:[8,4.9,17],target:[-1,1,-8]},
  wide:{position:[6.1,1.65,5.1],target:[-2,1.3,-3]},
  ceiling:{position:[-1,1.6,2.4],target:[0,3.3,-2.6]},
  console:{position:[2.2,1.5,-2.8],target:[4,.85,-5.5]},

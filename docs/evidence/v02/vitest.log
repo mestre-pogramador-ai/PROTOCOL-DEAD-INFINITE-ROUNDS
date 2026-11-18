@@ -1,0 +1,155 @@
+
+> protocol-dead-infinite-rounds@0.2.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /workspace/PROTOCOL-DEAD-INFINITE-ROUNDS
+
+stderr | src/tests/M62Stability.test.ts > M6.2 collision stability
+using deprecated parameters for the initialization function; pass a single object instead
+
+stdout | src/tests/M62Stability.test.ts > M6.2 crowds > keeps 1 infected outside solids and separated
+crowd 1 validation ms 16.55 simulation-only ms/600 ticks 2.18
+
+stdout | src/tests/M62Stability.test.ts > M6.2 crowds > keeps 3 infected outside solids and separated
+crowd 3 validation ms 84.52 simulation-only ms/600 ticks 1.69
+
+stdout | src/tests/M62Stability.test.ts > M6.2 crowds > keeps 6 infected outside solids and separated
+crowd 6 validation ms 188.28 simulation-only ms/600 ticks 11.46
+
+stdout | src/tests/M81EconomyProgression.test.ts > M8.1 finite-resource perk economy > completes R1–R15 with four perks: headshots
+M81_PROGRESSION {"profile":"headshots","kills":405,"misses":0,"shots":826,"purchases":26,"delivered":780,"reloads":55,"credits":{"credits":32480,"lifetimeEarned":46660,"lifetimeSpent":14680,"lastNotice":{"delta":200,"reason":"round","serial":1276},"doorPurchased":false},"acquired":[{"id":"quickHands","round":3,"balance":390},{"id":"impulse","round":4,"balance":430},{"id":"vitality","round":6,"balance":550},{"id":"reactiveArmor","round":7,"balance":370}],"evidence":[{"round":1,"shots":12,"balance":1220,"purchases":0,"reloads":0},{"round":2,"shots":30,"balance":2280,"purchases":0,"reloads":1},{"round":3,"shots":54,"balance":1680,"purchases":0,"reloads":3},{"round":4,"shots":80,"balance":1200,"purchases":1,"reloads":5},{"round":5,"shots":111,"balance":3050,"purchases":2,"reloads":7},{"round":6,"shots":147,"balance":2730,"purchases":3,"reloads":9},{"round":7,"shots":195,"balance":1810,"purchases":4,"reloads":12},{"round":8,"shots":250,"balance":4560,"purchases":6,"reloads":16},{"round":9,"shots":310,"balance":7640,"purchases":8,"reloads":20},{"round":10,"shots":380,"balance":10920,"purchases":11,"reloads":25},{"round":11,"shots":456,"balance":14720,"purchases":13,"reloads":30},{"round":12,"shots":539,"balance":18690,"purchases":16,"reloads":35},{"round":13,"shots":628,"balance":23000,"purchases":19,"reloads":41},{"round":14,"shots":724,"balance":27660,"purchases":22,"reloads":48},{"round":15,"shots":826,"balance":32480,"purchases":26,"reloads":55}]}
+
+stdout | src/tests/M62Stability.test.ts > M6.2 crowds > keeps 12 infected outside solids and separated
+crowd 12 validation ms 711.61 simulation-only ms/600 ticks 28.5
+
+stdout | src/tests/M81EconomyProgression.test.ts > M8.1 finite-resource perk economy > completes R1–R15 with four perks: body-80pct
+M81_PROGRESSION {"profile":"body-80pct","kills":405,"misses":374,"shots":1874,"purchases":60,"delivered":1800,"reloads":124,"credits":{"credits":20510,"lifetimeEarned":40810,"lifetimeSpent":20800,"lastNotice":{"delta":200,"reason":"round","serial":1940},"doorPurchased":false},"acquired":[{"id":"quickHands","round":3,"balance":360},{"id":"impulse","round":5,"balance":360},{"id":"vitality","round":7,"balance":390},{"id":"reactiveArmor","round":9,"balance":390}],"evidence":[{"round":1,"shots":22,"balance":1100,"purchases":0,"reloads":1},{"round":2,"shots":56,"balance":1980,"purchases":0,"reloads":3},{"round":3,"shots":101,"balance":960,"purchases":1,"reloads":6},{"round":4,"shots":152,"balance":2000,"purchases":3,"reloads":10},{"round":5,"shots":213,"balance":1310,"purchases":5,"reloads":14},{"round":6,"shots":284,"balance":2890,"purchases":7,"reloads":18},{"round":7,"shots":384,"balance":1990,"purchases":11,"reloads":25},{"round":8,"shots":499,"balance":3890,"purchases":15,"reloads":33},{"round":9,"shots":624,"balance":2560,"purchases":19,"reloads":41},{"round":10,"shots":793,"balance":5100,"purchases":24,"reloads":52},{"round":11,"shots":977,"balance":7590,"purchases":31,"reloads":65},{"round":12,"shots":1178,"balance":10580,"purchases":37,"reloads":78},{"round":13,"shots":1394,"balance":13700,"purchases":44,"reloads":92},{"round":14,"shots":1627,"balance":16950,"purchases":52,"reloads":108},{"round":15,"shots":1874,"balance":20510,"purchases":60,"reloads":124}]}
+
+stdout | src/tests/M62Stability.test.ts > M6.2 crowds > keeps 20 infected outside solids and separated
+crowd 20 validation ms 2074.91 simulation-only ms/600 ticks 93.17
+
+ ✓ src/tests/M62Stability.test.ts (20 tests) 4629ms
+   ✓ M6.2 collision stability > sustained sprint and wall sliding 0,-1  400ms
+   ✓ M6.2 crowds > keeps 12 infected outside solids and separated  741ms
+   ✓ M6.2 crowds > keeps 20 infected outside solids and separated  2170ms
+stderr | src/tests/M7Variants.test.ts > M7 mixed crowds and lifecycle > freezes every variant during pause and removes them on reset
+using deprecated parameters for the initialization function; pass a single object instead
+
+ ✓ src/tests/M7Variants.test.ts (20 tests) 5577ms
+   ✓ M7 mixed crowds and lifecycle > keeps 20 mixed enemies outside solids and separated for 20 simulated seconds  5370ms
+stdout | src/tests/M71Progression.test.ts > M7.1 finite-resource survival economy > completes R1–R10: headshots
+M71_PROGRESSION {"profile":"headshots","kills":195,"misses":0,"shots":380,"purchases":11,"delivered":330,"reloads":25,"credits":{"credits":20920,"lifetimeEarned":22400,"lifetimeSpent":1980,"lastNotice":{"delta":150,"reason":"round","serial":596},"doorPurchased":false},"evidence":[{"round":1,"shots":12,"balance":1220,"purchases":0,"reloads":0},{"round":2,"shots":30,"balance":2280,"purchases":0,"reloads":1},{"round":3,"shots":54,"balance":3680,"purchases":0,"reloads":3},{"round":4,"shots":80,"balance":5200,"purchases":1,"reloads":5},{"round":5,"shots":111,"balance":7050,"purchases":2,"reloads":7},{"round":6,"shots":147,"balance":9230,"purchases":3,"reloads":9},{"round":7,"shots":195,"balance":11810,"purchases":4,"reloads":12},{"round":8,"shots":250,"balance":14560,"purchases":6,"reloads":16},{"round":9,"shots":310,"balance":17640,"purchases":8,"reloads":20},{"round":10,"shots":380,"balance":20920,"purchases":11,"reloads":25}]}
+
+stderr | src/tests/M71RuntimeProgression.test.ts > finishes ten waves through Runtime with 80% body hits, paid ammo and real reloads
+using deprecated parameters for the initialization function; pass a single object instead
+
+stdout | src/tests/M81EconomyProgression.test.ts > M8.1 finite-resource perk economy > completes R1–R15 with four perks: body-67pct
+M81_PROGRESSION {"profile":"body-67pct","kills":405,"misses":749,"shots":2249,"purchases":73,"delivered":2190,"reloads":149,"credits":{"credits":18170,"lifetimeEarned":40810,"lifetimeSpent":23140,"lastNotice":{"delta":200,"reason":"round","serial":1953},"doorPurchased":false},"acquired":[{"id":"quickHands","round":3,"balance":360},{"id":"impulse","round":5,"balance":420},{"id":"vitality","round":7,"balance":400},{"id":"reactiveArmor","round":9,"balance":420}],"evidence":[{"round":1,"shots":26,"balance":1100,"purchases":0,"reloads":1},{"round":2,"shots":67,"balance":1980,"purchases":0,"reloads":4},{"round":3,"shots":121,"balance":780,"purchases":2,"reloads":8},{"round":4,"shots":182,"balance":1820,"purchases":4,"reloads":12},{"round":5,"shots":256,"balance":950,"purchases":7,"reloads":17},{"round":6,"shots":341,"balance":2530,"purchases":9,"reloads":22},{"round":7,"shots":461,"balance":1630,"purchases":13,"reloads":30},{"round":8,"shots":599,"balance":3350,"purchases":18,"reloads":39},{"round":9,"shots":749,"balance":1840,"purchases":23,"reloads":49},{"round":10,"shots":952,"balance":4020,"purchases":30,"reloads":63},{"round":11,"shots":1172,"balance":6510,"purchases":37,"reloads":78},{"round":12,"shots":1414,"balance":9140,"purchases":45,"reloads":94},{"round":13,"shots":1673,"balance":11900,"purchases":54,"reloads":111},{"round":14,"shots":1952,"balance":14970,"purchases":63,"reloads":130},{"round":15,"shots":2249,"balance":18170,"purchases":73,"reloads":149}]}
+
+ ✓ src/tests/M81EconomyProgression.test.ts (3 tests) 6416ms
+   ✓ M8.1 finite-resource perk economy > completes R1–R15 with four perks: headshots  1895ms
+   ✓ M8.1 finite-resource perk economy > completes R1–R15 with four perks: body-80pct  2129ms
+   ✓ M8.1 finite-resource perk economy > completes R1–R15 with four perks: body-67pct  2390ms
+stdout | src/tests/M71Progression.test.ts > M7.1 finite-resource survival economy > completes R1–R10: body-80pct
+M71_PROGRESSION {"profile":"body-80pct","kills":195,"misses":158,"shots":793,"purchases":24,"delivered":720,"reloads":52,"credits":{"credits":15100,"lifetimeEarned":18920,"lifetimeSpent":4320,"lastNotice":{"delta":150,"reason":"round","serial":846},"doorPurchased":false},"evidence":[{"round":1,"shots":22,"balance":1100,"purchases":0,"reloads":1},{"round":2,"shots":56,"balance":1980,"purchases":0,"reloads":3},{"round":3,"shots":101,"balance":2960,"purchases":1,"reloads":6},{"round":4,"shots":152,"balance":4000,"purchases":3,"reloads":10},{"round":5,"shots":213,"balance":5310,"purchases":5,"reloads":14},{"round":6,"shots":284,"balance":6890,"purchases":7,"reloads":18},{"round":7,"shots":384,"balance":8490,"purchases":11,"reloads":25},{"round":8,"shots":499,"balance":10390,"purchases":15,"reloads":33},{"round":9,"shots":624,"balance":12560,"purchases":19,"reloads":41},{"round":10,"shots":793,"balance":15100,"purchases":24,"reloads":52}]}
+
+stderr | src/tests/StationZero.test.ts > survives three successive waves with natural spawns, M9 shots and station ammunition
+using deprecated parameters for the initialization function; pass a single object instead
+
+stdout | src/tests/StationZero.test.ts > survives three successive waves with natural spawns, M9 shots and station ammunition
+Station Zero three-wave run {
+  elapsedSeconds: 63,
+  shots: 54,
+  hits: 54,
+  headshots: 54,
+  accuracy: 100,
+  kills: 27,
+  completedRounds: 3,
+  highestRound: 4,
+  creditsEarned: 3180,
+  creditsSpent: 270,
+  finalCredits: 3410,
+  doorPurchased: false,
+  damageTaken: 0,
+  damageEvents: 0
+}
+
+ ✓ src/tests/StationZero.test.ts (6 tests) 1500ms
+   ✓ survives three successive waves with natural spawns, M9 shots and station ammunition  1069ms
+stdout | src/tests/M71Progression.test.ts > M7.1 finite-resource survival economy > completes R1–R10: body-67pct
+M71_PROGRESSION {"profile":"body-67pct","kills":195,"misses":317,"shots":952,"purchases":30,"delivered":900,"reloads":63,"credits":{"credits":14020,"lifetimeEarned":18920,"lifetimeSpent":5400,"lastNotice":{"delta":150,"reason":"round","serial":852},"doorPurchased":false},"evidence":[{"round":1,"shots":26,"balance":1100,"purchases":0,"reloads":1},{"round":2,"shots":67,"balance":1980,"purchases":0,"reloads":4},{"round":3,"shots":121,"balance":2780,"purchases":2,"reloads":8},{"round":4,"shots":182,"balance":3820,"purchases":4,"reloads":12},{"round":5,"shots":256,"balance":4950,"purchases":7,"reloads":17},{"round":6,"shots":341,"balance":6530,"purchases":9,"reloads":22},{"round":7,"shots":461,"balance":8130,"purchases":13,"reloads":30},{"round":8,"shots":599,"balance":9850,"purchases":18,"reloads":39},{"round":9,"shots":749,"balance":11840,"purchases":23,"reloads":49},{"round":10,"shots":952,"balance":14020,"purchases":30,"reloads":63}]}
+
+ ✓ src/tests/M71Progression.test.ts (3 tests) 3258ms
+   ✓ M7.1 finite-resource survival economy > completes R1–R10: headshots  895ms
+   ✓ M7.1 finite-resource survival economy > completes R1–R10: body-80pct  1055ms
+   ✓ M7.1 finite-resource survival economy > completes R1–R10: body-67pct  1306ms
+stderr | src/tests/M7RuntimeValidation.test.ts > integrates real Runtime, Rapier and spawn positions through ten complete waves
+using deprecated parameters for the initialization function; pass a single object instead
+
+stdout | src/tests/M71RuntimeProgression.test.ts > finishes ten waves through Runtime with 80% body hits, paid ammo and real reloads
+M71_RUNTIME {"results":{"elapsedSeconds":295,"shots":793,"hits":635,"headshots":0,"accuracy":80.1,"kills":195,"completedRounds":10,"highestRound":11,"creditsEarned":18920,"creditsSpent":4320,"finalCredits":15100,"doorPurchased":false,"damageTaken":0,"damageEvents":0},"rows":[{"round":1,"shots":22,"credits":1100,"spent":0},{"round":2,"shots":56,"credits":1980,"spent":0},{"round":3,"shots":101,"credits":2960,"spent":180},{"round":4,"shots":152,"credits":4000,"spent":540},{"round":5,"shots":213,"credits":5310,"spent":900},{"round":6,"shots":284,"credits":6890,"spent":1260},{"round":7,"shots":384,"credits":8490,"spent":1980},{"round":8,"shots":499,"credits":10390,"spent":2700},{"round":9,"shots":624,"credits":12560,"spent":3420},{"round":10,"shots":793,"credits":15100,"spent":4320}]}
+
+ ✓ src/tests/M71RuntimeProgression.test.ts (1 test) 2940ms
+   ✓ finishes ten waves through Runtime with 80% body hits, paid ammo and real reloads  2938ms
+stdout | src/tests/M813Environment.test.ts > M8.1.3 environment safety and cost > batches static art into at most thirteen shared batches with bounded geometry and cleanup
+M813 environment 573 parts 13 static batches 5 door batches 9894 triangles
+
+stderr | src/tests/M813Environment.test.ts > M8.1.3 actual physics and gameplay regression
+using deprecated parameters for the initialization function; pass a single object instead
+
+ ✓ src/tests/M813Environment.test.ts (11 tests) 899ms
+   ✓ M8.1.3 environment safety and cost > keeps decorative assemblies inside their existing solid envelopes  310ms
+ ✓ src/tests/M814Optimization.test.ts (7 tests) 644ms
+   ✓ M8.1.4 environment preservation and reusable kit > partitions batches by reusable spatial buckets without losing geometry or shadow casters  384ms
+ ✓ src/tests/M7RuntimeValidation.test.ts (1 test) 1881ms
+   ✓ integrates real Runtime, Rapier and spawn positions through ten complete waves  1877ms
+ ✓ src/tests/M814Culling.test.ts (3 tests) 422ms
+stderr | src/tests/M61Movement.test.ts > M6.1 — integração real com Rapier (requer npm install)
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | src/tests/M81Perks.test.ts > M8.1 Rapier and placement
+using deprecated parameters for the initialization function; pass a single object instead
+
+stderr | src/tests/InfiniteRounds.test.ts > INFINITE ROUNDS — regras independentes > abre o corredor sem compra desde o início e após reiniciar
+using deprecated parameters for the initialization function; pass a single object instead
+
+ ✓ src/tests/M61Movement.test.ts (10 tests) 651ms
+ ✓ src/tests/M81Perks.test.ts (17 tests) 608ms
+ ✓ src/tests/InfiniteRounds.test.ts (6 tests) 230ms
+stderr | src/tests/M71Ammo.test.ts > M7.1 atomic ammo supply > allows preparation purchases, blocks pause interaction and resets all resources
+using deprecated parameters for the initialization function; pass a single object instead
+
+ ✓ src/tests/M813HeadTransition.test.ts (1 test) 134ms
+ ✓ src/tests/M71Ammo.test.ts (9 tests) 125ms
+ ✓ src/tests/M812Visual.test.ts (11 tests) 230ms
+stderr | src/tests/RuntimeInitialization.test.ts > concurrent runtime creation shares WASM initialization and keeps worlds independent
+using deprecated parameters for the initialization function; pass a single object instead
+
+ ✓ src/tests/M814Audio.test.ts (5 tests) 34ms
+ ✓ src/tests/RuntimeInitialization.test.ts (1 test) 56ms
+ ✓ src/tests/M811Visual.test.ts (12 tests) 40ms
+ ✓ src/tests/DesktopPolicy.test.ts (3 tests) 25ms
+ ✓ src/tests/M6VerticalSlice.test.ts (7 tests) 20ms
+ ✓ src/tests/M5WavesEconomy.test.ts (7 tests) 21ms
+ ✓ src/tests/GameClock.test.ts (4 tests) 36ms
+ ✓ src/tests/M41Polish.test.ts (7 tests) 13ms
+ ✓ src/tests/M9.test.ts (10 tests) 24ms
+ ✓ src/tests/Containment.test.ts (4 tests) 9ms
+ ✓ src/tests/M42Refinement.test.ts (5 tests) 9ms
+ ✓ src/tests/AssetManager.test.ts (2 tests) 9ms
+ ✓ src/tests/Config.test.ts (1 test) 9ms
+ ✓ src/tests/EventBus.test.ts (1 test) 6ms
+ ✓ src/tests/Infected.test.ts (5 tests) 17ms
+ ✓ src/tests/Lifecycle.test.ts (1 test) 5ms
+
+ Test Files  32 passed (32)
+      Tests  204 passed (204)
+   Start at  05:52:43
+   Duration  16.96s (transform 1.63s, setup 0ms, collect 5.97s, tests 30.48s, environment 18ms, prepare 4.01s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.3
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+npm notice To update run: npm install -g npm@12.2.3
+npm notice

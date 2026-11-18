@@ -1,0 +1,31 @@
+{
+  "death": {
+    "health": 0,
+    "maxHealth": 100,
+    "kills": 0,
+    "alive": 6,
+    "hitRecently": true,
+    "damageAngle": -1.9646802054469883,
+    "gameOver": true,
+    "lastHeadshot": false,
+    "hitMarker": false,
+    "damageEvents": 6,
+    "invulnerability": 0.65
+  },
+  "reset": {
+    "health": 100,
+    "maxHealth": 100,
+    "kills": 0,
+    "alive": 0,
+    "hitRecently": false,
+    "damageAngle": 0,
+    "gameOver": false,
+    "lastHeadshot": false,
+    "hitMarker": false,
+    "damageEvents": 0,
+    "invulnerability": 0
+  },
+  "doorOpen": true,
+  "bestKey": "protocol-dead-infinite-rounds:best-run:v1",
+  "originalUnchanged": true
+}

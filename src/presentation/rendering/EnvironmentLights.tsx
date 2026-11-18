@@ -1,6 +1,6 @@
 import type {Vec3} from './EnvironmentTypes';
 export interface EnvironmentLightRig{ambient:number;sky:string;ground:string;hemisphere:number;sun:{position:Vec3;color:string;intensity:number};points:readonly{position:Vec3;color:string;intensity:number;distance:number}[]}
-export const CONTAINMENT_LIGHTS:EnvironmentLightRig={ambient:.75,sky:'#b5c9ce',ground:'#454c48',hemisphere:1.35,sun:{position:[-4,10,5],intensity:1.7,color:'#e0e9e3'},points:[{position:[-3,2.95,-1],intensity:16,color:'#7ec2cb',distance:11},{position:[7,2.85,-2.8],intensity:12,color:'#d16c58',distance:8}]};
+export const CONTAINMENT_LIGHTS:EnvironmentLightRig={ambient:.75,sky:'#b5c9ce',ground:'#454c48',hemisphere:1.35,sun:{position:[-4,10,5],intensity:1.7,color:'#e0e9e3'},points:[{position:[-3,2.95,-1],intensity:16,color:'#7ec2cb',distance:11},{position:[0,3.2,-13],intensity:28,color:'#fa392d',distance:10}]};
 /** Static light budget: one soft shadow, no point-light shadows. Mesh luminaires
  * are separate modules and do not each create another dynamic light. */
 export function EnvironmentLights({rig=CONTAINMENT_LIGHTS}:{rig?:EnvironmentLightRig}){return <>

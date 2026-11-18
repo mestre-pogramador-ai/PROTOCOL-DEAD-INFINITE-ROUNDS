@@ -9,7 +9,7 @@ interface Archetype {
 }
 const common:Readonly<EnemyStats> = {
   maxHp:100,speed:2,attackRange:1.45,attackDamage:18,
-  windup:.45,active:.15,recovery:.9,aggro:18,bodyRadius:.38,
+  windup:.45,active:.15,recovery:.9,aggro:60,bodyRadius:.38,
 };
 /** Same collision/hit volumes for every type; colors and attack cadence identify roles. */
 export const ENEMY_ARCHETYPES:Readonly<Record<EnemyKind,Readonly<Archetype>>> = {
